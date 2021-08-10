@@ -127,8 +127,7 @@ function write_filter_pipeline_message(io, filter_id::UInt16)
 end
 
 
-function deflate_data(f::JLDFile, data::Array{T}, odr::S, wsession::JLDWriteSession,
-                      compressor) where {T,S}
+function deflate_data(f::JLDFile, data::Array, odr, wsession::JLDWriteSession, compressor)
     buf = Vector{UInt8}(undef, odr_sizeof(odr) * length(data))
     cp = Ptr{Cvoid}(pointer(buf))
     @simd for i = 1:length(data)
